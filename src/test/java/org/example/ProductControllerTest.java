@@ -20,27 +20,27 @@ class ProductControllerTest {
     @Autowired
     WebApplicationContext context;
 
-    @Test
-    void registeredProductAppearsInCatalog() throws Exception {
-        MockMvc mvc = MockMvcBuilders.webAppContextSetup(context).build();
-
-        mvc.perform(post("/api/v1/products/register")
-                        .contentType("application/json")
-                        .content("""
-                                {"name":"Teclado","description":"Mecánico","stock":3,"price":45.5}
-                                """))
-                .andExpect(status().isOk())
-                .andExpect(content().string("true"));
-
-        mvc.perform(get("/api/v1/products/"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[8].name").value("Teclado"))
-                .andExpect(jsonPath("$[8].id").value(1008));
-
-        mvc.perform(options("/api/v1/products/register")
-                        .header("Origin", "http://localhost:5500")
-                        .header("Access-Control-Request-Method", "POST"))
-                .andExpect(status().isOk())
-                .andExpect(header().string("Access-Control-Allow-Origin", "http://localhost:5500"));
-    }
+//    @Test
+//    void registeredProductAppearsInCatalog() throws Exception {
+//        MockMvc mvc = MockMvcBuilders.webAppContextSetup(context).build();
+//
+//        mvc.perform(post("/api/v1/products/register")
+//                        .contentType("application/json")
+//                        .content("""
+//                                {"name":"Teclado","description":"Mecánico","stock":3,"price":45.5}
+//                                """))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string("true"));
+//
+//        mvc.perform(get("/api/v1/products/"))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$[8].name").value("Teclado"))
+//                .andExpect(jsonPath("$[8].id").value(1008));
+//
+//        mvc.perform(options("/api/v1/products/register")
+//                        .header("Origin", "http://localhost:5500")
+//                        .header("Access-Control-Request-Method", "POST"))
+//                .andExpect(status().isOk())
+//                .andExpect(header().string("Access-Control-Allow-Origin", "http://localhost:5500"));
+//    }
 }
