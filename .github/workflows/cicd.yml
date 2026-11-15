@@ -88,3 +88,4 @@ jobs:
             whoami
             sudo docker pull albertovs/ms-producto:v1.0.0
             sudo docker run -p 8080:8080 -d albertovs/ms-producto:v1.0.0
+
