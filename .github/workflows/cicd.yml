@@ -59,7 +59,7 @@ jobs:
           path: target
 
       - name: Build docker image
-        run: docker build -t albertovs/ms-product:v1.0.0 .
+        run: docker build -t albertovs/ms-producto:v1.0.0 .
 
       - name: Docker hub login
         env:
@@ -67,7 +67,7 @@ jobs:
         run: echo "$DOCKER_TOKEN" | docker login --username albertovs --password-stdin
 
       - name: Push image
-        run: docker push albertovs/ms-product:v1.0.0
+        run: docker push albertovs/ms-producto:v1.0.0
 
   deploy_ec2:
     needs: ["publish_image"]
@@ -86,5 +86,5 @@ jobs:
           port: 22
           script: |
             whoami
-            sudo docker pull albertovs/ms-product:v1.0.0
-            sudo docker run -p 8080:8080 -d albertovs/ms-product:v1.0.0
+            sudo docker pull albertovs/ms-producto:v1.0.0
+            sudo docker run -p 8080:8080 -d albertovs/ms-producto:v1.0.0
